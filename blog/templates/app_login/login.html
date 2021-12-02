@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title_block %}login{% endblock  %}
+{% block body_block %}
+<div class="sigupform ">
+    <div class="container signup-style" >
+       <div class="row">
+         <div class="col-lg-4 pt-6">
+         <img src="{% static 'images/signup2.png' %}" alt="" class="signup-img">
+         </div>
+         <div class="col-lg-7 pt-5">
+         <form action="" method="POST" style="max-width:400px" >
+         {{loginform|crispy}}
+         {% csrf_token %}
+         <br>
+         <button class="btn btn-success" type="submit">login</button>
+         <br>
+         </form>
+         <p>Dont have an account ? please <a href="{% url 'app_login:signup' %}" style="text-decoration:none">signup</a></p>
+         </div>
+       </div>
+    </div>
+</div>
+{% endblock  %}
+

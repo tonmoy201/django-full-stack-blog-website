@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title_block %}blog details{% endblock  %}
+{% block body_block %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 pt-4"> 
+            <h3>{{blog.blog_title}}</h3>
+            <h5>Author Name :@<a href="#">{{blog.author_name}}</a></h5>
+            <h6>Published Date:  {{blog.published_date}}</h6>
+            <h6>Update Date :  {{blog.update_date}}</h6>
+        </div>
+        <div class="col-lg-6 pt-4">
+            <img src="/media/{{blog.blog_img}}" alt="" width="100%">
+        </div>
+        <p>{{blog.blog_content|linebreaks}}</p>
+    </div>
+
+<div class="comment-form">
+    <div class="row">
+        <div class="col-lg-6">
+            <hr>
+            <h3>comment:</h3>
+            {% for comment in blog.blog_comment.all %} 
+            <p><a href="{% url 'app_login:profile' %} ">@{{comment.user}}</a> {{comment.comment}} <br><h6><i>{{comment.comment_date}}</i></h6></p>
+            {% endfor %}
+            
+        </div>
+        <div class="col-lg-6">
+            <hr>
+            <form action="" method="POST">
+                {{form|crispy}}
+                {% csrf_token %}
+                <br>
+                <button class="btn btn-success" type="submit">Commnet</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<br><br><br>
+</div>
+
+
+
+{% endblock  %}

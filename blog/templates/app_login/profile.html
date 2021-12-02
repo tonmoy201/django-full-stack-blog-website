@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title_block %}Profile{% endblock  %}
+{% block body_block %}
+<div class="container">
+  <div class="profile-picture pt-5">
+    {% if user.userprofile %}
+    <img  src="/media/{{user.userprofile.profile_picture}}" alt="" width="10%"><br>
+    {% else %}
+    <img  src="{% static 'images/profilestatic.jpg' %}" alt="" class="rounded-circle" >
+    {% endif %}
+    <br>
+    <a style="text-decoration: none;" href="{% url 'app_login:addpic' %}"><button class="btn btn-primary">Edit profile picture</button></a>
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="profile-information">
+          <h3>User Name :{{user.username}} </h3>
+          <h5>First Name:{{user.first_name}} </h5>
+          <h5>Last Name :{{user.last_name}} </h5>
+          <h5>Full Name :{{user.first_name}} {{user.last_name}} </h5>
+          <h5>Gmail :{{user.email}} </h5>
+          <br>
+          <br>
+          <a style="text-decoration:none;" href="{% url 'app_login:edit_profile' %}"><button class="btn btn-success">Edit Profile</button></a>
+          
+         </div>
+        </div>
+        <div class="col-lg-8">
+            {% for blog in user.post_author.all  %}
+             <h4>blog_title:{{blog.blog_title}}</h4>
+             <h6>publish date: {{blog.published_date}}</h6>
+             <hr>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+    
+
+  </div>
+</div>
+{% endblock  %}
+
+

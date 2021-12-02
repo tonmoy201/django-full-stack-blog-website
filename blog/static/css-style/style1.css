@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.sigupform{
+    padding-top: 100px;
+}
+
+.signup-img{
+    max-width: 400px;
+    max-height: 450px;
+}
+
+
+.profile-style{
+max-height: 200px;
+max-width: 205px;
+
+}
